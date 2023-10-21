@@ -8,6 +8,8 @@
     <PlatformTarget>x64</PlatformTarget>
     <SignAssembly>False</SignAssembly>
     <Platforms>AnyCPU;x64</Platforms>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>Resource.Package.Assets</Title>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
