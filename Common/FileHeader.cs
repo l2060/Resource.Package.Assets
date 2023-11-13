@@ -99,10 +99,48 @@ namespace Resource.Package.Assets.Common
 
 
 
-    public interface IReadOnlyDataInfo
+    public interface IReadOnlyLazyInfo
     {
+        public Int32 Index { get; }
+        public Int32 Width { get; }
+        public Int32 Height { get; }
+        public Int16 OffsetX { get; }
+        public Int16 OffsetY { get; }
+        public ImageTypes lpType { get; }
+        public RenderTypes lpRenderType { get; }
+        public Byte Unknown2 { get; }
+        public Byte Unknown1 { get; }
+
+        public Func<Func<Byte[]?>> GetReader { get; }
+    }
+
+
+
+    public class LazyDataInfo : IReadOnlyLazyInfo
+    {
+        public Int32 Index { get; set; }
         public Int32 Width { get; set; }
         public Int32 Height { get; set; }
+
+
+        public Int16 OffsetX { get; set; }
+        public Int16 OffsetY { get; set; }
+
+        public ImageTypes lpType { get; set; }
+        public RenderTypes lpRenderType { get; set; }
+        public Byte Unknown2 { get; set; }
+        public Byte Unknown1 { get; set; }
+
+        public Func<Func<Byte[]?>> GetReader { get; set; }
+
+    }
+
+
+
+    public interface IReadOnlyDataInfo
+    {
+        public Int32 Width { get;  }
+        public Int32 Height { get; }
         public Int16 OffsetX { get; }
         public Int16 OffsetY { get; }
         public ImageTypes lpType { get; }
