@@ -161,9 +161,36 @@ namespace Resource.Package.Assets
         }
 
 
-
-        public IReadOnlyDataBlock Read(UInt32 index)
+        /// <summary>
+        /// 仅读取图片信息不读取数据
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public IReadOnlyDataInfo? ReadInfo(UInt32 index)
         {
+            if (index >= this.NumberOfFiles) return null;
+            var info = this.Infomations[(Int32)index];
+            var node = new DataBlock();
+            node.lpType = info.lpType;
+            node.lpRenderType = info.lpRenderType;
+            node.Unknown1 = info.Unknown1;
+            node.Unknown2 = info.Unknown2;
+            node.OffsetX = info.OffsetX;
+            node.OffsetY = info.OffsetY;
+            node.Width = info.Width;
+            node.Height = info.Height;
+            return node;
+        }
+
+
+        /// <summary>
+        /// 读取图片信息及数据
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public IReadOnlyDataBlock? Read(UInt32 index)
+        {
+            if (index >= this.NumberOfFiles) return null;
             var info = this.Infomations[(Int32)index];
             using (var reader = new BinaryReader(fileStream, Encoding.UTF8, true))
             {
